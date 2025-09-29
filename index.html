@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chainsaw-dle</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+
+<body>
+    <header>
+        <h1>Chainsaw-dle</h1>
+        <p>Adivinhe o personagem de Chainsaw Man!</p>
+    </header>
+
+    <div class="game-panel">
+        <main>
+            <div class="input-area">
+                <input type="text" id="guess-input" placeholder="Digite o nome de um personagem...">
+                <button id="guess-button">Adivinhar</button>
+            </div>
+        
+            <div id="suggestions-container"></div>
+        
+            <div id="guesses-container">
+                <div class="guess-header">
+                    <div>Foto</div>
+                    <div>Personagem</div>
+                    <div>Espécie</div>
+                    <div>Contrato</div>
+                    <div>Função</div>
+                    <div>Sexo</div>
+                </div>
+                </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>De Caio para Monalisa.</p>
+    </footer>
+
+    <div id="victory-overlay" class="hidden">
+        <div id="victory-modal">
+            <h1 id="victory-title">Parabéns!</h1>
+            <img id="victory-image" src="" alt="Imagem do Personagem">
+            <p id="victory-text">Você acertou! O personagem era Denji.</p>
+            <button id="play-again-button">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script src="lore.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
