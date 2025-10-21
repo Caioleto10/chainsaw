@@ -49,34 +49,36 @@ h1 { color: #ff4500; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 #guess-button:hover { background-color: #e03e00; }
 
 /* --- Container das Tentativas (GRADE DE 5 COLUNAS) --- */
+/* O container principal agora é flex, empilhando as linhas */
 #guesses-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço ENTRE as linhas de tentativa */
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr 1.5fr 1.5fr 1.5fr; 
-    gap: 2.5rem;
-    text-align: center;
-    perspective: 1000px;
-    padding: 1rem;
+    perspective: 1000px; /* Mantém a perspectiva para o flip */
 }
 
 /* ADICIONE ESTA NOVA REGRA PARA A IMAGEM NA CÉLULA */
-.cell-back .guess-image {
-    width: 70px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
+/* O cabeçalho e cada linha de tentativa SÃO ELES MESMOS um grid */
+.guess-header,
+.guess-row {
+    display: grid;
+    /* Layout de 6 colunas para desktop */
+    grid-template-columns: 1fr 2fr 2fr 1.5fr 1.5fr 1.5fr; 
+    gap: 10px; /* Espaço ENTRE as células */
 }
 .guess-header {
     display: contents; /* Para o cabeçalho se alinhar na grade */
 }
+/* O cabeçalho não precisa mais de display: contents */
 .guess-header div {
-    font-weight: bold; padding: 10px; background-color: #2a2a2a;
-    border-radius: 3px; margin-bottom: 5px;
+    font-weight: bold; 
+    padding: 10px; 
+    background-color: #2a2a2a;
+    border-radius: 3px; 
 }
-.guess-row {
-    display: contents; /* Para as linhas de resposta se alinharem na grade */
-}
+/* Removed empty ruleset for .guess-row */
 
 /* --- Estilos da Célula de Flip --- */
 .guess-cell {
@@ -201,25 +203,29 @@ footer {
 /* --- MEDIA QUERIES PARA RESPONSIVIDADE (CELULAR) --- */
 /* ====================================================== */
 
-/* Estas regras serão aplicadas em telas com 768px de largura ou menos */
+/* ====================================================== */
+/* --- MEDIA QUERIES PARA RESPONSIVIDADE (CELULAR) --- */
+/* ====================================================== */
+
 @media (max-width: 768px) {
     
     /* Ajusta o painel principal para a tela */
     .game-panel {
-        padding: 15px; /* Menos preenchimento nas laterais */
+        padding: 15px;
         max-width: 100%;
         width: auto;
     }
 
     /* Empilha o input e o botão */
     .input-area {
-        flex-direction: column; /* Um em cima do outro */
+        flex-direction: column;
         gap: 15px;
     }
 
     /* A MUDANÇA PRINCIPAL: A GRADE DE RESPOSTAS */
-    #guesses-container {
-        /* Muda a grade de 6 colunas para 3 colunas */
+    /* Dizemos ao cabeçalho E a CADA linha para mudarem para 3 colunas */
+    .guess-header,
+    .guess-row {
         grid-template-columns: repeat(3, 1fr);
         gap: 8px; /* Diminui o espaço entre as cartas */
     }
@@ -235,7 +241,7 @@ footer {
         font-size: 9px;
     }
     .property-value {
-        font-size: 13px; /* Diminui a fonte para caber */
+        font-size: 13px;
     }
     .cell-back .guess-image {
         width: 50px;
