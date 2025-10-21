@@ -196,3 +196,66 @@ footer {
     color: rgb(14, 0, 0); /* Cor de texto clara, mas com um pouco de transparência */
     font-style: italic; /* Deixa o texto em itálico para dar um toque especial */
 }
+
+/* ====================================================== */
+/* --- MEDIA QUERIES PARA RESPONSIVIDADE (CELULAR) --- */
+/* ====================================================== */
+
+/* Estas regras serão aplicadas em telas com 768px de largura ou menos */
+@media (max-width: 768px) {
+    
+    /* Ajusta o painel principal para a tela */
+    .game-panel {
+        padding: 15px; /* Menos preenchimento nas laterais */
+        max-width: 100%;
+        width: auto;
+    }
+
+    /* Empilha o input e o botão */
+    .input-area {
+        flex-direction: column; /* Um em cima do outro */
+        gap: 15px;
+    }
+
+    /* A MUDANÇA PRINCIPAL: A GRADE DE RESPOSTAS */
+    #guesses-container {
+        /* Muda a grade de 6 colunas para 3 colunas */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px; /* Diminui o espaço entre as cartas */
+    }
+
+    /* Ajusta o texto do cabeçalho */
+    .guess-header div {
+        font-size: 11px;
+        padding: 8px 5px;
+    }
+
+    /* Ajusta o texto e a imagem dentro das cartas */
+    .property-title {
+        font-size: 9px;
+    }
+    .property-value {
+        font-size: 13px; /* Diminui a fonte para caber */
+    }
+    .cell-back .guess-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Ajusta a lista de sugestões */
+    #suggestions-container {
+        max-height: 200px;
+    }
+    .suggestion-item img {
+        width: 30px;
+        height: 30px;
+    }
+    .suggestion-item span {
+        font-size: 14px;
+    }
+
+    /* Ajusta o rodapé */
+    footer {
+        margin-top: 20px;
+    }
+}

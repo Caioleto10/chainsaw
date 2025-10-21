@@ -16,14 +16,11 @@ const suggestionsContainer = document.getElementById('suggestions-container');
 let dailyCharacter;
 let allCharacters = [];
 let previousGuesses = [];
-let attempts = 0;
-const maxAttempts = 8;
 
 // --- 3. FUNÇÕES PRINCIPAIS DO JOGO ---
 
 async function initGame() {
     victoryOverlay.classList.add('hidden');
-    attempts = 0;
     previousGuesses = [];
     guessInput.disabled = true;
     guessInput.value = '';
@@ -114,7 +111,6 @@ async function handleGuess() {
         gender: guessedExtraLore.gender
     };
 
-    attempts++;
     await displayResult(guessedCharacter);
     guessInput.value = "";
     checkGameOver(guessedCharacter.name.toLowerCase() === dailyCharacter.name.toLowerCase());
@@ -200,13 +196,13 @@ function hideSuggestions() {
     suggestionsContainer.innerHTML = '';
 }
 function checkGameOver(wasCorrect) {
+    // Agora só verificamos se o jogador acertou
     if (wasCorrect) {
         showVictoryScreen(dailyCharacter);
         disableGame();
-    } else if (attempts >= maxAttempts) {
-        alert(`Fim de jogo! O personagem era ${dailyCharacter.name}.`);
-        disableGame();
     }
+    // A condição 'else if' de derrota foi removida.
+    // O jogo simplesmente continua se 'wasCorrect' for falso.
 }
 function showVictoryScreen(character) {
     victoryText.textContent = `Você acertou! O personagem era ${character.name}.`;
